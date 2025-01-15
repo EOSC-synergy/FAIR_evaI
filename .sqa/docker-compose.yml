@@ -1,10 +1,20 @@
-version: "3.6"
-
 services:
-  faireva-testing:
-    image: "indigodatacloud/ci-images:python3.6"
-    hostname: "faireva-testing"
+  qc.doc_homely-sapphire-dormouse:
+    build:
+      context: ./github.com/EOSC-synergy/sqaaas-tooling/QC.Doc/markdownlint
+      dockerfile: Dockerfile
+    command: sleep 6000000
     volumes:
-     - type: bind
-       source: ./
-       target: /faireva-testing
+    - source: ./
+      target: /sqaaas-build
+      type: bind
+    working_dir: /sqaaas-build
+  qc.doc_snippy-ultramarine-havanese:
+    command: sleep 6000000
+    image: eoscsynergy/sqaaas-licensee:9.17.0
+    volumes:
+    - source: ./
+      target: /sqaaas-build
+      type: bind
+    working_dir: /sqaaas-build
+version: '3.7'

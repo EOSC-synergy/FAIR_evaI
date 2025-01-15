@@ -1,14 +1,20 @@
 config:
+  credentials: []
   project_repos:
-    myrepo:
-      repo: 'https://github.com/IFCA-Advanced-Computing/FAIR_eva'
-
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
 sqa_criteria:
-  qc_style:
+  QC.Doc:
     repos:
-      myrepo:
-        container: faireva-testing
-        tox:
-          tox_file: '/faireva-testing/tox.ini'
-          testenv:
-            - pep8
+      this_repo:
+        commands:
+        - 'licensee detect . --confidence 60 --json '
+        container: qc.doc_snippy-ultramarine-havanese
+      this_repo__2:
+        commands:
+        - mdl --json  .
+        container: qc.doc_homely-sapphire-dormouse
+timeout: 5400
